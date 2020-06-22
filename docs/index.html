@@ -13,14 +13,17 @@
 </head>
 
 <body>
-  <div data-app id="app">Loading...</div>
+  <div data-app id="main">Loading...</div>
   <script>
     window.$docsify = {
-      name: '',
-      repo: ''
+      el: "#main"
     }
   </script>
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify-tabs@1"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/components/prism-json.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/components/prism-python.min.js"></script>
 </body>
 
 </html>

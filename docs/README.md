@@ -18,6 +18,8 @@ game | none | What game's leaderboard you want to retrieve: `1 = sprint, 3 = che
 mode | none | Game mode to retrieve, for games that have more than 1 mode like Sprint and Cheese,`1 = 40L/10L, 2 = 20L/18L, 3 = 100L, 4 = 1000L` for any other game, mode should be 1   
 offset | 0 | Offset of the games retrieved, this endpoint sends 500 users at a time to see the next 500 users you add `offset=500` in your next API request
 
+<!-- tabs:start -->
+#### ** JavaScript **
 ```javascript
 var requestOptions = {
   method: 'GET',
@@ -29,10 +31,25 @@ fetch("https://jstris.jezevec10.com/api/leaderboard/1?mode=1&offset=0", requestO
   .then(result => console.log(result))
   .catch(error => console.log('error', error));
 ```
+#### ** Python **
+```python
+import requests
+
+url = "https://jstris.jezevec10.com/api/leaderboard/1?mode=1&offset=0"
+
+payload = {}
+headers= {}
+
+response = requests.request("GET", url, headers=headers, data = payload)
+
+print(response.text.encode('utf8'))
+```
+<!-- tabs:end -->
+
 
 > The above command returns JSON structured like this:
 
-```JSON
+```json
 [
     {
         "id": 16008204,
@@ -69,6 +86,8 @@ username | Username of the player
 games | (optional) If omitted the API will return overall statistics from the requested user
 offset | If you want to see the next 50 games, increase the offset by 50 in every API request 
 
+<!-- tabs:start -->
+#### ** JavaScript **
 ```javascript
 var requestOptions = {
   method: 'GET',
@@ -80,10 +99,25 @@ fetch("https://jstris.jezevec10.com/api/u/FireStorm/live/games?offset=0", reques
   .then(result => console.log(result))
   .catch(error => console.log('error', error));
 ```
+#### ** Python **
+```python
+import requests
+
+url = "https://jstris.jezevec10.com/api/u/FireStorm/live/games?offset=0"
+
+payload = {}
+headers= {}
+
+response = requests.request("GET", url, headers=headers, data = payload)
+
+print(response.text.encode('utf8'))
+```
+<!-- tabs:end -->
+
 
 > The above command returns JSON structured like this:
 
-```JSON
+```json
 [
     {
         "id": 65123482,
@@ -121,7 +155,8 @@ game | (number) What game you want `1 = sprint, 3 = cheese, 4 = survival, 5 = ul
 mode | Game mode to retrieve, for games that have more than 1 mode like Sprint and Cheese `1 = 40L/10L, 2 = 20L/18L, 3 = 100L, 4 = 1000L` for any other game, mode should be 1
 best | If included the API will return the ID, Gametime, and Timestamp of the user's PB
 
-
+<!-- tabs:start -->
+#### ** JavaScript **
 ```javascript
 var requestOptions = {
   method: 'GET',
@@ -133,9 +168,25 @@ fetch("https://jstris.jezevec10.com/api/u/Erickmack/records/1?mode=1&best", requ
   .then(result => console.log(result))
   .catch(error => console.log('error', error));
 ```
+#### ** Python **
+```python
+import requests
+
+url = "https://jstris.jezevec10.com/api/u/Erickmack/records/1?mode=1&best"
+
+payload = {}
+headers= {}
+
+response = requests.request("GET", url, headers=headers, data = payload)
+
+print(response.text.encode('utf8'))
+```
+
+<!-- tabs:end -->
+
 > The above command returns JSON structured like this:
 
-```JSON
+```json
 {
     "name": "Erickmack",
     "min": 33.19,
