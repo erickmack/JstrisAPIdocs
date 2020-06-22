@@ -1,6 +1,6 @@
 # Introduction
 
-Welcome to the Jstris API! You can use our API to retrieve Leaderboards or specific user's data like live games, sprint time, survival pb, and more.
+Welcome to the Jstris API! You can use our API to retrieve Leaderboards or specific user's data like live games, sprint time, survival PB, and more.
 
 # Leaderboards
 
