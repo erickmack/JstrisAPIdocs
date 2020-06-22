@@ -4,17 +4,17 @@ Welcome to the Jstris API! You can use our API to retrieve Leaderboards or speci
 
 # Leaderboards
 
-This endpoint retrieves Jstris leaderboards
+This endpoint retrieves Jstris Sprint, Cheese, Survival, and Ultra leaderboards (20TSD and PC Mode not currently supported)
 
-### HTTP Request
+## HTTP Request
 
 `GET http://jstris.jezevec10.com/api/leaderboard/<game>?mode=<mode>`
 
-### Query Parameters
+## Query Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
-game | none | What game's leaderboard you want to retrieve: `1 = sprint, 3 = cheese, 4 = survival, 5 = ultra, 7 = 20TSD, 8 = PC Mode`
+game | none | What game's leaderboard you want to retrieve: `1 = sprint, 3 = cheese, 4 = survival, 5 = ultra`
 mode | none | Game mode to retrieve, for games that have more than 1 mode like Sprint and Cheese,`1 = 40L/10L, 2 = 20L/18L, 3 = 100L, 4 = 1000L` for any other game, mode should be 1   
 offset | 0 | Offset of the games retrieved, this endpoint sends 500 users at a time to see the next 500 users you add `offset=500` in your next API request
 
@@ -66,6 +66,59 @@ print(response.text.encode('utf8'))
         "name": "MicroBlizz"
     }
 ]
+```
+# Maps
+This endpoint returns state, name, queue, finish condition, and data of the specified map
+
+## HTTP Request
+`GET https://jstris.jezevec10.com/maps/api/<ID>`
+
+## URL Parameters
+Parameter | Description
+----------|------------
+ID | ID of the map you want to retrieve information from
+
+<!-- tabs:start -->
+#### ** JavaScript **
+```javascript
+var requestOptions = {
+  method: 'GET',
+  redirect: 'follow'
+};
+
+fetch("https://jstris.jezevec10.com/maps/api/14079", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+```
+#### ** Python **
+```python
+import requests
+
+url = "https://jstris.jezevec10.com/maps/api/14079"
+
+payload = {}
+headers = {}
+
+response = requests.request("GET", url, headers=headers, data = payload)
+
+print(response.text.encode('utf8'))
+
+```
+<!-- tabs:end -->
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "id": 14079,
+    "state": 0,
+    "name": "skin tests",
+    "queue": "OJJILJITLO",
+    "finish": 1,
+    "data": "AAAAAAAAAAAAABI0VnAIEjRWcAgSNFZwCBI0VnAIEjRWcAgSNFZwCBI0VnAIEjRWcAgSNFZwCBI0VnAIEjRWcAgSNFZwCBI0VnAIEjRWcAgSNFZwCBI0VnAIEjRWcAgSNFZwCA==",
+    "boardMD5": "e580ed4ea61836c9"
+}
 ```
 
 # Users
@@ -144,7 +197,7 @@ This endpoint returns best and worst time as well as average, sum, total games p
 
 ### HTTP Request
 
-`GET https://jstris.jezevec10.com/api/u/<username>/records/<game>?mode=<mode>`
+`GET https://jstris.jezevec10.com/api/u/<username>/records/<game>?mode=<mode>rule=<rule>`
 
 ### URL Parameters
 
@@ -154,6 +207,7 @@ username | Name of the player
 game | (number) What game you want `1 = sprint, 3 = cheese, 4 = survival, 5 = ultra, 7 = 20TSD, 8 = PC Mode`
 mode | Game mode to retrieve, for games that have more than 1 mode like Sprint and Cheese `1 = 40L/10L, 2 = 20L/18L, 3 = 100L, 4 = 1000L` for any other game, mode should be 1
 best | If included the API will return the ID, Gametime, and Timestamp of the user's PB
+rule | Game mode rules `MPH` `big` `pentomino` if excluded it will return the default rule
 
 <!-- tabs:start -->
 #### ** JavaScript **
@@ -205,5 +259,56 @@ print(response.text.encode('utf8'))
         ]
     },
     "days": 443
+}
+```
+## Game Data
+This endpoint returns gametime, finesse, blocks, and replay of a game. Replay will return false if the replay was not saved.
+
+### HTTP Request
+`GET https://jstris.jezevec10.com/api/record/<ID>`
+
+### URL Parameters
+Parameter | Description
+----------|------------
+ID | ID of the game
+
+<!-- tabs:start -->
+#### ** JavaScript **
+```javascript
+var requestOptions = {
+  method: 'GET',
+  redirect: 'follow'
+};
+
+fetch("https://jstris.jezevec10.com/api/record/6245003", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+```
+#### ** Python **
+```python
+import requests
+
+url = "https://jstris.jezevec10.com/api/record/6245003"
+
+payload = {}
+headers= {}
+
+response = requests.request("GET", url, headers=headers, data = payload)
+
+print(response.text.encode('utf8'))
+```
+
+<!-- tabs:end -->
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "id": 6245003,
+    "gametime": 35.988,
+    "finesse": 22,
+    "blocks": 102,
+    "replay": true
 }
 ```
