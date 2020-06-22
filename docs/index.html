@@ -24,6 +24,11 @@
   <script src="//cdn.jsdelivr.net/npm/docsify-copy-code"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/components/prism-json.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/components/prism-python.min.js"></script>
+  <script>
+    if (typeof navigator.serviceWorker !== 'undefined') {
+      navigator.serviceWorker.register('sw.js')
+    }
+  </script>
 </body>
 
 </html>
